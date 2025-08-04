@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba5yvxy1jabn0"]
+
+[ext_resource type="Shader" uid="uid://cfp4f6434q18x" path="res://video.gdshader" id="1_8uh7m"]
+[ext_resource type="VideoStream" uid="uid://dwetye6e0ehu6" path="res://audio/6b5bdb7b6b40afa0_339768243e494a4d9c7efb8b246d194c (1).ogv" id="1_37kl0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8uh7m"]
+shader = ExtResource("1_8uh7m")
+shader_parameter/dark_color = Color(0, 0, 0, 1)
+shader_parameter/light_color = Color(1, 1, 1, 1)
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.1
+
+[sub_resource type="GDScript" id="GDScript_8uh7m"]
+script/source = "extends VideoStreamPlayer
+
+func _ready():
+	playback_speed = 4
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+material = SubResource("ShaderMaterial_8uh7m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_37kl0")
+expand = true
+script = SubResource("GDScript_8uh7m")
